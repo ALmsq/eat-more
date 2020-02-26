@@ -1,8 +1,8 @@
-#Eat More
+# Eat More
 
 Eat more is a restaurant favoriting app 
 
-##Getting Started
+## Getting Started
 
 clone this repo, and cd into the directory
 
@@ -16,7 +16,7 @@ backend:
 * clone this [repo](https://github.com/ALmsq/eat-more-api/ "eat-more-api")
 * run backend locally with `rails s`
 
-##Technologies Used
+## Technologies Used
 
 **Frontend**
 * React.js

@@ -62,8 +62,6 @@ import {connect} from 'react-redux'
     return (
       <div>
         
-        
-        
         <Switch>
           <Route path='/login' render={() => <Login/>}/>
           <Route path='/signup' render={() => <Signup/>}/>

@@ -97,7 +97,7 @@ const logoutUser = () => dispatch => {
 
 const API_KEY=process.env.REACT_APP_GOOGLE_PLACES_KEY
 const QUERY = 'bronx'
-const URL = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+Brooklyn%20NY%20USA&rankby=prominence&
+const URL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+Brooklyn%20NY%20USA&rankby=prominence&
 &key=${API_KEY}`
 
 const getPlaceAction = place => ({
@@ -119,7 +119,7 @@ const getQuery = (query) => ({
 
 
 const getPlace = (args) => dispatch => {
-  fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+${args}&rankby=prominence&
+  fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+${args}&rankby=prominence&
   &key=${API_KEY}`)
     .then(r => r.json())
     .then((placeArr) => { dispatch(getPlaceAction(placeArr.results))
@@ -159,7 +159,7 @@ const fetchQuery = (query) => ({
   })
 
   const getRestaurants = (placeID) => dispatch => {
-    fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeID}&key=${API_KEY}`)
+    fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeID}&key=${API_KEY}`)
     .then(r => r.json())
     .then((data) => { dispatch(addOrder(data.results[0]))
     })

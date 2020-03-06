@@ -27,6 +27,11 @@ const Places = (c) => {
         // console.log(c.c)
         dispatch(orderActions.addPlaceToProfile(restObj, userId))
     }
+
+    const handleRatings = (e) => {
+        console.log(e.target)
+    }
+    
     // console.log(c.onClick())
     // console.log(c)
     return (
@@ -40,7 +45,7 @@ const Places = (c) => {
         
         <Grid.Column>
             <Card onClick={onClick} >
-                <Image src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${ifPhoto}&key=${API_KEY}`}/>
+                <Image src={`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${ifPhoto}&key=${API_KEY}`}/>
                 <Card.Content>
                     <Card.Header>{c.c.name}</Card.Header>
                     <Card.Meta>{ifOpen}</Card.Meta>
@@ -54,7 +59,7 @@ const Places = (c) => {
                         <Icon name='user' />
                         10 Friends
                     </a> */}
-                        <Rating icon='star' defaultRating={c.c.rating} maxRating={5} />
+                        <Rating onClick={handleRatings} icon='star' defaultRating={c.c.rating} maxRating={5} />
             
                     </Card.Content>
             </Card>            

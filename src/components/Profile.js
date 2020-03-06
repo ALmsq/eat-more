@@ -38,11 +38,12 @@ const Profile = () => {
         // console.log("hello", restaurants)
         let newInfoRest =[]
         restaurants.forEach(r => {
-            fetch(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${r.place_id}&key=${API_KEY}`)
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${r.place_id}&key=${API_KEY}`)
             .then(r => r.json())
             .then((data) => { 
                 // console.log(data.result)
                 // setCards([...cards, data.result])
+                
                 newInfoRest = [...newInfoRest, data.result]
                 setCards(newInfoRest)
             })
@@ -63,7 +64,7 @@ const Profile = () => {
             return(
             <Grid.Column>
                 <Card>
-                    <Image src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${ifPhoto}&key=${API_KEY}`}/>
+                    <Image src={`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${ifPhoto}&key=${API_KEY}`}/>
                     <Card.Content>
                         <Card.Header>{card.name}</Card.Header>
                         {/* <Card.Meta>{ifOpen}</Card.Meta> */}

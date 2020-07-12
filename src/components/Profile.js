@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import actions from '../redux/actions'
 import Places from "./Place"
 import Pizza from '../Pizza'
+import '../HomePage.css'
 
 import { Grid, Image, Card, Rating } from 'semantic-ui-react'
 
@@ -37,14 +38,18 @@ const Profile = () => {
     const generateCards = () => {
         // console.log("hello", restaurants)
         let newInfoRest =[]
+        
         restaurants.forEach(r => {
             fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${r.place_id}&key=${API_KEY}`)
             .then(r => r.json())
             .then((data) => { 
+                console.log(r)
                 // console.log(data.result)
                 // setCards([...cards, data.result])
+                // console.log(newInfoRest)
                 
                 newInfoRest = [...newInfoRest, data.result]
+                // console.log(newInfoRest)
                 setCards(newInfoRest)
             })
         });
@@ -57,11 +62,12 @@ const Profile = () => {
         let ifPhoto = (card.photos? card.photos[0].photo_reference : "CmRaAAAAhITrIBjd8kRzu0ahi_XZAb32Skza-3DgpwLPabXm5iVZa26xPBdHcC2Keip0bpuUimsoG0wP_aECeM4wE8kc55Ebvjisca6bgsjh_OOjRtrjQRdDzVcpyEMPAub8AhcIEhBH40_RFwrYLiHhzyz-xKAGGhQAKLLb3VR7Hd9qSWV2H4O90Suxzg")
         let ifOpen = (card.opening_hours? card.opening_hours['open_now']? 'Open':'Closed' : '')
             // return <Places c={card} key={card.id} />
-            console.log(card)
+            // console.log(card)
             // return<li>{card.name}</li>
             /////////////////////////////////////////////
             
             return(
+    
             <Grid.Column>
                 <Card>
                     <Image src={`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=200&photoreference=${ifPhoto}&key=${API_KEY}`}/>
@@ -82,8 +88,10 @@ const Profile = () => {
                             <Rating icon='star' defaultRating={card.rating} maxRating={5} />
                 
                         </Card.Content>
-                </Card>            
-        </Grid.Column>
+                </Card>             
+            </Grid.Column>
+        
+    
             )
         })
     }
@@ -94,12 +102,13 @@ const Profile = () => {
     return (
         <div>
             <Pizza/>
+            <h1 style={{textAlign: 'center'}}>{ifUser}'s favorites</h1>
             <Grid columns={3} divided>
-                <Grid.Row>
-                    <h1>{ifUser}</h1>
-                    <ol>
+                <Grid.Row >
+                    
+                    
                         {showCards()}
-                    </ol>
+                    
                 </Grid.Row>
             </Grid>
         </div>

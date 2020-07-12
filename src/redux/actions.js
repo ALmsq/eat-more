@@ -10,7 +10,7 @@
 
 // API CONSTANTS
 
-const BASE_URL = 'https://morning-island-37962.herokuapp.com';
+const BASE_URL = 'http://localhost:3000';
 const USERS_URL = BASE_URL + '/users';
 const PERSIST_URL = BASE_URL + '/persist';
 const LOGIN_URL = BASE_URL + '/login';
@@ -43,6 +43,7 @@ const newUserToDB = userObj => dispatch => {
     .then(data => {
       dispatch(setUserAction(data.user));
       localStorage.setItem('token', data.token);
+      
     });
 };
 
@@ -67,11 +68,15 @@ const loginUserToDB = userCredentials => dispatch => {
   fetch(LOGIN_URL, config)
     .then(r => r.json())
     .then(data => {
+      if(data.error){
+        console.log('errooor')
+        alert('incorrect login')
+      }
       dispatch(setUserAction(data.user));
       dispatch(getOrder(data.user.restaurants))
       localStorage.setItem('token', data.token);
     })
-      .catch(err => console.log(err))
+      .catch(err => console.log('error'))
 };
 
 const persistUser = () => dispatch => {

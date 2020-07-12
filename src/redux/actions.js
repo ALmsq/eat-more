@@ -10,7 +10,7 @@
 
 // API CONSTANTS
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://morning-island-37962.herokuapp.com';
 const USERS_URL = BASE_URL + '/users';
 const PERSIST_URL = BASE_URL + '/persist';
 const LOGIN_URL = BASE_URL + '/login';
